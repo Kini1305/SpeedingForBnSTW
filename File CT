@@ -1,0 +1,730 @@
+[
+
+
+
+4787
+"𝐅𝐥𝐲 𝐡𝐚𝐜𝐤𝐬"
+
+9D9D00
+Auto Assembler Script
+[ENABLE]
+alloc(speed,$1000,kernel32.dll)
+label(end)
+label(Base)
+label(free)
+label(ptr1)
+label(tester)
+registersymbol(tester)
+registersymbol(end)
+registersymbol(ptr1)
+createthread(speed)
+
+speed:
+push rbp
+mov rbp,rsp
+sub rsp,20
+and spl,F0
+Base:
+mov ecx,#1000
+call kernel32.Sleep
+mov rbx,"BNSR.exe"
+mov rbx,[rbx+6E62640]
+mov rcx,rbx
+mov edx,#8
+call kernel32.isBadReadPtr
+cmp eax,#0
+jne CBT
+mov rbx,[rbx+30]
+mov rcx,rbx
+mov edx,#8
+call kernel32.isBadReadPtr
+Speeding.txt
+
+cmp eax,#0
+jne CBT
+mov rbx,[rbx+2C0]
+mov rcx,rbx
+mov edx,#8
+call kernel32.isBadReadPtr
+cmp eax,#0
+jne CBT
+mov rbx,[rbx+130]
+mov rcx,rbx
+mov edx,#8
+call kernel32.isBadReadPtr
+cmp eax,#0
+jne CBT
+lea rbx,[rbx+1F0]
+mov rcx,rbx
+mov edx,#8
+call kernel32.isBadReadPtr
+cmp eax,#0
+jne CBT
+mov [ptr1],rbx
+mov [tester],#0
+cmp byte ptr[end],#0
+je Base
+// free memory, return
+free:
+mov rsp,rbp
+pop rbp
+mov rcx,speed
+xor rdx,rdx
+mov r8d,8000
+jmp kernel32.VirtualFree
+CBT:
+mov dword ptr[tester],1
+mov rbx,"BNSR.exe"
+mov qword ptr[ptr1],rbx
+cmp byte ptr[end],#1
+je free
+jmp Base
+
+ptr1:
+dq 0
+
+end:
+dd 0
+
+tester:
+dd 1
+
+[DISABLE]
+
+end:
+dd 1
+
+unregistersymbol(tester)
+unregistersymbol(ptr1)
+unregistersymbol(end)
+
+{
+F3 0F10 8B 98000000
+F3 0F59 B1 98000000 this one
+F3 0F10 80 98000000
+30]+2C0]+98
+}
+
+
+
+4788
+"𝐀𝐜𝐭𝐢𝐯𝐚𝐭𝐢𝐨𝐧"
+
+9D9D00
+Auto Assembler Script
+[ENABLE]
+aobscanmodule(flyhack,BNSR.exe,0F 11 BF ? ? ? ? 48 8B CF)
+alloc(flymem,$1000,["BNSR.exe"+0751E700]+30)
+label(testcode)
+label(orcode)
+label(return)
+label(graviytcode)
+label(altitudecode)
+label(xyz)
+label(altitude)
+label(clippercode)
+label(clipper)
+label(thrall_is_cute)
+label(boss1x)
+label(boss1y)
+label(boss1z)
+label(boss1e)
+label(boss2x)
+label(boss2y)
+label(boss2z)
+label(boss2e)
+label(boss3x)
+label(boss3y)
+label(boss3z)
+label(boss3e)
+label(boss4x)
+label(boss4y)
+label(boss4z)
+label(boss4e)
+label(boss5x)
+label(boss5y)
+label(boss5z)
+label(boss5e)
+label(boss6x)
+label(boss6y)
+label(boss6z)
+label(boss6e)
+label(boss7x)
+label(boss7y)
+label(boss7z)
+label(boss7e)
+label(boss8x)
+label(boss8y)
+label(boss8z)
+label(boss8e)
+label(boss9x)
+label(boss9y)
+label(boss9z)
+label(boss9e)
+
+flymem:
+testcode:
+pushf
+push rax
+mov eax,[tester]
+cmp eax,0
+jne orcode
+mov rax,ptr1
+mov rax,[rax]
+sub rax,1F0
+cmp rax,rdi
+jne orcode
+cmp byte ptr[xyz+20],1
+je graviytcode
+cmp byte ptr[xyz+21],1
+je altitudecode
+cmp byte ptr[xyz+22],1
+je clippercode
+cmp byte ptr[xyz+23],0
+jne thrall_is_cute
+movups [xyz],xmm7
+jmp orcode
+graviytcode:
+movups [xyz+10],xmm7
+mov eax,dword ptr[xyz+8]
+mov dword ptr[xyz+18],eax
+movups xmm7,[xyz+10]
+jmp orcode
+altitudecode:
+movss xmm7,dword ptr[xyz+8]
+addss xmm7,[altitude]
+movss dword ptr[xyz+8],xmm7
+movups xmm7,[xyz]
+jmp orcode
+clippercode:
+movss xmm7,dword ptr[xyz+8]
+addss xmm7,[clipper]
+movss dword ptr[xyz+8],xmm7
+movups xmm7,[xyz]
+jmp orcode
+thrall_is_cute:
+cmp byte ptr[xyz+23],1
+je thrall_is_cute1
+cmp byte ptr[xyz+23],2
+je thrall_is_cute2
+cmp byte ptr[xyz+23],3
+je thrall_is_cute3
+cmp byte ptr[xyz+23],4
+je thrall_is_cute4
+cmp byte ptr[xyz+23],5
+je thrall_is_cute5
+cmp byte ptr[xyz+23],6
+je thrall_is_cute6
+cmp byte ptr[xyz+23],7
+je thrall_is_cute7
+cmp byte ptr[xyz+23],8
+je thrall_is_cute8
+cmp byte ptr[xyz+23],9
+je thrall_is_cute9
+jmp orcode
+thrall_is_cute1:
+movups xmm7,[boss1x]
+jmp orcode
+thrall_is_cute2:
+movups xmm7,[boss2x]
+jmp orcode
+thrall_is_cute3:
+movups xmm7,[boss3x]
+jmp orcode
+thrall_is_cute4:
+movups xmm7,[boss4x]
+jmp orcode
+thrall_is_cute5:
+movups xmm7,[boss5x]
+jmp orcode
+thrall_is_cute6:
+movups xmm7,[boss6x]
+jmp orcode
+thrall_is_cute7:
+movups xmm7,[boss7x]
+jmp orcode
+thrall_is_cute8:
+movups xmm7,[boss8x]
+jmp orcode
+thrall_is_cute9:
+movups xmm7,[boss9x]
+jmp orcode
+
+orcode:
+pop rax
+popf
+movups [rdi+000001F0],xmm7
+mov rcx,rdi
+movups [rdi+00000200],xmm6
+jmp return
+
+altitude:
+dd (float)3
+
+clipper:
+dd (float)-3
+
+boss1x:
+dd (float)31439
+
+boss1y:
+dd (float)-9998
+
+boss1z:
+dd (float)34120
+
+boss1e:
+dd 0
+
+boss2x:
+dd (float)70264
+
+boss2y:
+dd (float)-12230
+
+boss2z:
+dd (float)38080
+
+boss2e:
+dd 0
+
+boss3x:
+dd (float)63661
+
+boss3y:
+dd (float)31165
+
+boss3z:
+dd (float)20173
+
+boss3e:
+dd 0
+
+boss4x:
+dd (float)-16923
+
+boss4y:
+dd (float)-28167
+
+boss4z:
+dd (float)5338
+
+boss4e:
+dd 0
+
+boss5x:
+dd (float)-5805
+
+boss5y:
+dd (float)1577
+
+boss5z:
+dd (float)20288
+
+boss5e:
+dd 0
+
+boss6x:
+dd (float)-851
+
+boss6y:
+dd (float)-6167
+
+boss6z:
+dd (float)10128
+
+boss6e:
+dd 0
+
+boss7x:
+dd (float)-19415
+
+boss7y:
+dd (float)-10570
+
+boss7z:
+dd (float)-128
+
+boss7e:
+dd 0
+
+boss8x:
+dd (float)55604
+
+boss8y:
+dd (float)-67938
+
+boss8z:
+dd (float)3082
+
+boss8e:
+dd 0
+
+boss9x:
+dd (float)11680
+
+boss9y:
+dd (float)-35920
+
+boss9z:
+dd (float)-736
+
+boss9e:
+dd 0
+
+xyz:
+db 0
+
+flyhack:
+jmp flymem
+nop 3
+return:
+
+registersymbol(xyz)
+registersymbol(flyhack)
+[DISABLE]
+flyhack:
+db 0F 11 BF F0 01 00 00 48 8B CF 0F 11 B7 00 02 00 00
+
+unregistersymbol(flyhack)
+unregistersymbol(xyz)
+dealloc(flymem)
+
+4789 " ★ Altitude" FF8080 Auto Assembler Script [ENABLE] xyz+21: db 1
+[DISABLE]
+xyz+21:
+db 0
+
+
+
+Toggle Activation
+
+33
+
+0
+
+
+
+
+4790
+" ★ Gravity"
+FF8080
+Auto Assembler Script
+[ENABLE]
+xyz+20:
+db 1
+
+[DISABLE]
+xyz+20:
+db 0
+
+
+
+Toggle Activation
+
+34
+
+0
+
+
+
+
+4791
+" ★ Clipper"
+FF8080
+Auto Assembler Script
+[ENABLE]
+xyz+22:
+db 1
+
+[DISABLE]
+xyz+22:
+db 0
+
+
+
+Toggle Activation
+
+45
+
+0
+
+
+
+
+4800
+"X"
+0
+Float
+"BNSR.exe"+6E62640
+
+1f0
+130
+2c0
+30
+
+
+
+Toggle Activation
+
+36
+
+0
+
+
+
+
+4801
+"Y"
+0
+Float
+"BNSR.exe"+6E62640
+
+1f0+4
+130
+2c0
+30
+
+
+
+Toggle Activation
+
+36
+
+0
+
+
+
+
+4802
+"Z"
+0
+Float
+"BNSR.exe"+6E62640
+
+1f0+8
+130
+2c0
+30
+
+
+
+Toggle Activation
+
+36
+
+0
+
+
+
+
+
+
+
+
+4458
+"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x10"
+
+9D9D00
+Auto Assembler Script
+[ENABLE]
+[[["BNSR.exe"+6E62640]+30]+2C0]+98:
+dd (float)10
+
+[DISABLE]
+
+[[["BNSR.exe"+6E62640]+30]+2C0]+98:
+dd (float)1
+
+{
+F3 0F10 8B 98000000
+F3 0F59 B1 98000000
+F3 0F10 80 98000000
+30]+2C0]+98
+}
+
+
+
+Deactivate
+
+17
+49
+
+1
+Deactivate
+
+
+Activate
+
+17
+52
+
+0
+Activate
+
+
+
+
+4459
+" ★ Freezer"
+0
+FF8080
+Float
+"BNSR.exe"+75185F0
+
+
+Toggle Activation
+
+0
+
+
+
+
+
+
+4462
+"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x5"
+
+9D9D00
+Auto Assembler Script
+[ENABLE]
+[[["BNSR.exe"+6E62640]+30]+2C0]+98:
+dd (float)5
+
+[DISABLE]
+
+[[["BNSR.exe"+6E62640]+30]+2C0]+98:
+dd (float)1
+
+{
+F3 0F10 8B 98000000
+F3 0F59 B1 98000000
+F3 0F10 80 98000000
+30]+2C0]+98
+}
+
+
+
+Deactivate
+
+17
+49
+
+1
+Deactivate
+
+
+Activate
+
+17
+51
+
+0
+Activate
+
+
+
+
+4463
+" ★ Freezer"
+0
+FF8080
+Float
+"BNSR.exe"+75185F0
+
+
+Toggle Activation
+
+0
+
+
+
+
+
+
+4460
+"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x3"
+
+9D9D00
+Auto Assembler Script
+[ENABLE]
+[[["BNSR.exe"+6E62640]+30]+2C0]+98:
+dd (float)3
+
+[DISABLE]
+
+[[["BNSR.exe"+6E62640]+30]+2C0]+98:
+dd (float)1
+
+{
+F3 0F10 8B 98000000
+F3 0F59 B1 98000000
+F3 0F10 80 98000000
+30]+2C0]+98
+}
+
+
+
+Deactivate
+
+17
+49
+
+1
+Deactivate
+
+
+Activate
+
+17
+50
+
+0
+Activate
+
+
+
+
+4461
+" ★ Freezer"
+0
+FF8080
+Float
+"BNSR.exe"+75185F0
+
+
+Toggle Activation
+
+0
+
+
+
+
+
+
+
+
+替換了 movups [rdi+000001F0],xmm7
+BNSR.exe+2D3A4EB
+
+00
+00
+45
+8B
+C6
+
+
+0F
+11
+BF
+F0
+01
+00
+00
+
+
+B2
+01
+0F
+11
+B7
