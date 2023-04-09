@@ -1,13 +1,13 @@
-[
-
-
-
-4787
-"𝐅𝐥𝐲 𝐡𝐚𝐜𝐤𝐬"
-
-9D9D00
-Auto Assembler Script
-[ENABLE]
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4787</ID>
+      <Description>"𝐅𝐥𝐲 𝐡𝐚𝐜𝐤𝐬"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <Color>9D9D00</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
 alloc(speed,$1000,kernel32.dll)
 label(end)
 label(Base)
@@ -20,83 +20,83 @@ registersymbol(ptr1)
 createthread(speed)
 
 speed:
-push rbp
-mov rbp,rsp
-sub rsp,20
-and spl,F0
+  push rbp
+  mov rbp,rsp
+  sub rsp,20
+  and spl,F0
 Base:
-mov ecx,#1000
-call kernel32.Sleep
-mov rbx,"BNSR.exe"
-mov rbx,[rbx+6E62640]
-mov rcx,rbx
-mov edx,#8
-call kernel32.isBadReadPtr
-cmp eax,#0
-jne CBT
-mov rbx,[rbx+30]
-mov rcx,rbx
-mov edx,#8
-call kernel32.isBadReadPtr
-Speeding.txt
-
-cmp eax,#0
-jne CBT
-mov rbx,[rbx+2C0]
-mov rcx,rbx
-mov edx,#8
-call kernel32.isBadReadPtr
-cmp eax,#0
-jne CBT
-mov rbx,[rbx+130]
-mov rcx,rbx
-mov edx,#8
-call kernel32.isBadReadPtr
-cmp eax,#0
-jne CBT
-lea rbx,[rbx+1F0]
-mov rcx,rbx
-mov edx,#8
-call kernel32.isBadReadPtr
-cmp eax,#0
-jne CBT
-mov [ptr1],rbx
-mov [tester],#0
-cmp byte ptr[end],#0
-je Base
+  mov ecx,#1000
+  call kernel32.Sleep
+  mov rbx,"BNSR.exe"
+  mov rbx,[rbx+6E62640]
+  mov rcx,rbx
+  mov edx,#8
+  call kernel32.isBadReadPtr
+  cmp eax,#0
+  jne CBT
+  mov rbx,[rbx+30]
+  mov rcx,rbx
+  mov edx,#8
+  call kernel32.isBadReadPtr
+  cmp eax,#0
+  jne CBT
+  mov rbx,[rbx+2C0]
+  mov rcx,rbx
+  mov edx,#8
+  call kernel32.isBadReadPtr
+  cmp eax,#0
+  jne CBT
+  mov rbx,[rbx+130]
+  mov rcx,rbx
+  mov edx,#8
+  call kernel32.isBadReadPtr
+  cmp eax,#0
+  jne CBT
+  lea rbx,[rbx+1F0]
+  mov rcx,rbx
+  mov edx,#8
+  call kernel32.isBadReadPtr
+  cmp eax,#0
+  jne CBT
+  mov [ptr1],rbx
+  mov [tester],#0
+  cmp byte ptr[end],#0
+  je Base
 // free memory, return
 free:
-mov rsp,rbp
-pop rbp
-mov rcx,speed
-xor rdx,rdx
-mov r8d,8000
-jmp kernel32.VirtualFree
+  mov rsp,rbp
+  pop rbp
+  mov rcx,speed
+  xor rdx,rdx
+  mov r8d,8000
+  jmp kernel32.VirtualFree
 CBT:
-mov dword ptr[tester],1
-mov rbx,"BNSR.exe"
-mov qword ptr[ptr1],rbx
-cmp byte ptr[end],#1
-je free
-jmp Base
+  mov dword ptr[tester],1
+  mov rbx,"BNSR.exe"
+  mov qword ptr[ptr1],rbx
+  cmp byte ptr[end],#1
+  je free
+  jmp Base
+
 
 ptr1:
-dq 0
+  dq 0
 
 end:
-dd 0
+  dd 0
 
 tester:
-dd 1
+  dd 1
 
 [DISABLE]
 
 end:
-dd 1
+  dd 1
 
 unregistersymbol(tester)
 unregistersymbol(ptr1)
 unregistersymbol(end)
+
 
 {
 F3 0F10 8B 98000000
@@ -104,15 +104,15 @@ F3 0F59 B1 98000000 this one
 F3 0F10 80 98000000
 30]+2C0]+98
 }
-
-
-
-4788
-"𝐀𝐜𝐭𝐢𝐯𝐚𝐭𝐢𝐨𝐧"
-
-9D9D00
-Auto Assembler Script
-[ENABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4788</ID>
+          <Description>"𝐀𝐜𝐭𝐢𝐯𝐚𝐭𝐢𝐨𝐧"</Description>
+          <Options moDeactivateChildrenAsWell="1"/>
+          <Color>9D9D00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
 aobscanmodule(flyhack,BNSR.exe,0F 11 BF ? ? ? ? 48 8B CF)
 alloc(flymem,$1000,["BNSR.exe"+0751E700]+30)
 label(testcode)
@@ -164,377 +164,391 @@ label(boss9e)
 
 flymem:
 testcode:
-pushf
-push rax
-mov eax,[tester]
-cmp eax,0
-jne orcode
-mov rax,ptr1
-mov rax,[rax]
-sub rax,1F0
-cmp rax,rdi
-jne orcode
-cmp byte ptr[xyz+20],1
-je graviytcode
-cmp byte ptr[xyz+21],1
-je altitudecode
-cmp byte ptr[xyz+22],1
-je clippercode
-cmp byte ptr[xyz+23],0
-jne thrall_is_cute
-movups [xyz],xmm7
-jmp orcode
+ pushf
+ push rax
+ mov eax,[tester]
+ cmp eax,0
+ jne orcode
+ mov rax,ptr1
+ mov rax,[rax]
+ sub rax,1F0
+ cmp rax,rdi
+ jne orcode
+ cmp byte ptr[xyz+20],1
+ je graviytcode
+ cmp byte ptr[xyz+21],1
+ je altitudecode
+ cmp byte ptr[xyz+22],1
+ je clippercode
+ cmp byte ptr[xyz+23],0
+ jne thrall_is_cute
+ movups [xyz],xmm7
+ jmp orcode
 graviytcode:
-movups [xyz+10],xmm7
-mov eax,dword ptr[xyz+8]
-mov dword ptr[xyz+18],eax
-movups xmm7,[xyz+10]
-jmp orcode
+ movups [xyz+10],xmm7
+ mov eax,dword ptr[xyz+8]
+ mov dword ptr[xyz+18],eax
+ movups xmm7,[xyz+10]
+ jmp orcode
 altitudecode:
-movss xmm7,dword ptr[xyz+8]
-addss xmm7,[altitude]
-movss dword ptr[xyz+8],xmm7
-movups xmm7,[xyz]
-jmp orcode
+ movss xmm7,dword ptr[xyz+8]
+ addss xmm7,[altitude]
+ movss dword ptr[xyz+8],xmm7
+ movups xmm7,[xyz]
+ jmp orcode
 clippercode:
-movss xmm7,dword ptr[xyz+8]
-addss xmm7,[clipper]
-movss dword ptr[xyz+8],xmm7
-movups xmm7,[xyz]
-jmp orcode
+ movss xmm7,dword ptr[xyz+8]
+ addss xmm7,[clipper]
+ movss dword ptr[xyz+8],xmm7
+ movups xmm7,[xyz]
+ jmp orcode
 thrall_is_cute:
-cmp byte ptr[xyz+23],1
-je thrall_is_cute1
-cmp byte ptr[xyz+23],2
-je thrall_is_cute2
-cmp byte ptr[xyz+23],3
-je thrall_is_cute3
-cmp byte ptr[xyz+23],4
-je thrall_is_cute4
-cmp byte ptr[xyz+23],5
-je thrall_is_cute5
-cmp byte ptr[xyz+23],6
-je thrall_is_cute6
-cmp byte ptr[xyz+23],7
-je thrall_is_cute7
-cmp byte ptr[xyz+23],8
-je thrall_is_cute8
-cmp byte ptr[xyz+23],9
-je thrall_is_cute9
-jmp orcode
+ cmp byte ptr[xyz+23],1
+ je thrall_is_cute1
+ cmp byte ptr[xyz+23],2
+ je thrall_is_cute2
+ cmp byte ptr[xyz+23],3
+ je thrall_is_cute3
+ cmp byte ptr[xyz+23],4
+ je thrall_is_cute4
+ cmp byte ptr[xyz+23],5
+ je thrall_is_cute5
+ cmp byte ptr[xyz+23],6
+ je thrall_is_cute6
+ cmp byte ptr[xyz+23],7
+ je thrall_is_cute7
+ cmp byte ptr[xyz+23],8
+ je thrall_is_cute8
+ cmp byte ptr[xyz+23],9
+ je thrall_is_cute9
+ jmp orcode
 thrall_is_cute1:
-movups xmm7,[boss1x]
-jmp orcode
+ movups xmm7,[boss1x]
+ jmp orcode
 thrall_is_cute2:
-movups xmm7,[boss2x]
-jmp orcode
+ movups xmm7,[boss2x]
+ jmp orcode
 thrall_is_cute3:
-movups xmm7,[boss3x]
-jmp orcode
+ movups xmm7,[boss3x]
+ jmp orcode
 thrall_is_cute4:
-movups xmm7,[boss4x]
-jmp orcode
+ movups xmm7,[boss4x]
+ jmp orcode
 thrall_is_cute5:
-movups xmm7,[boss5x]
-jmp orcode
+ movups xmm7,[boss5x]
+ jmp orcode
 thrall_is_cute6:
-movups xmm7,[boss6x]
-jmp orcode
+ movups xmm7,[boss6x]
+ jmp orcode
 thrall_is_cute7:
-movups xmm7,[boss7x]
-jmp orcode
+ movups xmm7,[boss7x]
+ jmp orcode
 thrall_is_cute8:
-movups xmm7,[boss8x]
-jmp orcode
+ movups xmm7,[boss8x]
+ jmp orcode
 thrall_is_cute9:
-movups xmm7,[boss9x]
-jmp orcode
+ movups xmm7,[boss9x]
+ jmp orcode
+
 
 orcode:
-pop rax
-popf
-movups [rdi+000001F0],xmm7
-mov rcx,rdi
-movups [rdi+00000200],xmm6
-jmp return
+ pop rax
+ popf
+ movups [rdi+000001F0],xmm7
+ mov rcx,rdi
+ movups [rdi+00000200],xmm6
+ jmp return
 
 altitude:
-dd (float)3
+ dd (float)3
 
 clipper:
-dd (float)-3
+ dd (float)-3
 
 boss1x:
-dd (float)31439
+ dd (float)31439
 
 boss1y:
-dd (float)-9998
+ dd (float)-9998
 
 boss1z:
-dd (float)34120
+ dd (float)34120
 
 boss1e:
-dd 0
+ dd 0
 
 boss2x:
-dd (float)70264
+ dd (float)70264
 
 boss2y:
-dd (float)-12230
+ dd (float)-12230
 
 boss2z:
-dd (float)38080
+ dd (float)38080
 
 boss2e:
-dd 0
+ dd 0
 
 boss3x:
-dd (float)63661
+ dd (float)63661
 
 boss3y:
-dd (float)31165
+ dd (float)31165
 
 boss3z:
-dd (float)20173
+ dd (float)20173
 
 boss3e:
-dd 0
+ dd 0
 
 boss4x:
-dd (float)-16923
+ dd (float)-16923
 
 boss4y:
-dd (float)-28167
+ dd (float)-28167
 
 boss4z:
-dd (float)5338
+ dd (float)5338
 
 boss4e:
-dd 0
+ dd 0
 
 boss5x:
-dd (float)-5805
+ dd (float)-5805
 
 boss5y:
-dd (float)1577
+ dd (float)1577
 
 boss5z:
-dd (float)20288
+ dd (float)20288
 
 boss5e:
-dd 0
+ dd 0
 
 boss6x:
-dd (float)-851
+ dd (float)-851
 
 boss6y:
-dd (float)-6167
+ dd (float)-6167
 
 boss6z:
-dd (float)10128
+ dd (float)10128
 
 boss6e:
-dd 0
+ dd 0
 
 boss7x:
-dd (float)-19415
+ dd (float)-19415
 
 boss7y:
-dd (float)-10570
+ dd (float)-10570
 
 boss7z:
-dd (float)-128
+ dd (float)-128
 
 boss7e:
-dd 0
+ dd 0
 
 boss8x:
-dd (float)55604
+ dd (float)55604
 
 boss8y:
-dd (float)-67938
+ dd (float)-67938
 
 boss8z:
-dd (float)3082
+ dd (float)3082
 
 boss8e:
-dd 0
+ dd 0
 
 boss9x:
-dd (float)11680
+ dd (float)11680
 
 boss9y:
-dd (float)-35920
+ dd (float)-35920
 
 boss9z:
-dd (float)-736
+ dd (float)-736
 
 boss9e:
-dd 0
+ dd 0
 
 xyz:
-db 0
+ db 0
 
 flyhack:
-jmp flymem
-nop 3
+  jmp flymem
+  nop 3
 return:
 
 registersymbol(xyz)
 registersymbol(flyhack)
 [DISABLE]
 flyhack:
-db 0F 11 BF F0 01 00 00 48 8B CF 0F 11 B7 00 02 00 00
+  db 0F 11 BF F0 01 00 00 48 8B CF 0F 11 B7 00 02 00 00
 
 unregistersymbol(flyhack)
 unregistersymbol(xyz)
 dealloc(flymem)
 
-4789 " ★ Altitude" FF8080 Auto Assembler Script [ENABLE] xyz+21: db 1
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>4789</ID>
+              <Description>"    ★ Altitude"</Description>
+              <Color>FF8080</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+xyz+21:
+ db 1
+
 [DISABLE]
 xyz+21:
-db 0
-
-
-
-Toggle Activation
-
-33
-
-0
-
-
-
-
-4790
-" ★ Gravity"
-FF8080
-Auto Assembler Script
-[ENABLE]
+ db 0
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>33</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>4790</ID>
+              <Description>"    ★ Gravity"</Description>
+              <Color>FF8080</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
 xyz+20:
-db 1
+ db 1
 
 [DISABLE]
 xyz+20:
-db 0
-
-
-
-Toggle Activation
-
-34
-
-0
-
-
-
-
-4791
-" ★ Clipper"
-FF8080
-Auto Assembler Script
-[ENABLE]
+ db 0
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>34</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>4791</ID>
+              <Description>"    ★ Clipper"</Description>
+              <Color>FF8080</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
 xyz+22:
-db 1
+ db 1
 
 [DISABLE]
 xyz+22:
-db 0
+ db 0
+</AssemblerScript>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>45</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>4800</ID>
+              <Description>"X"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"BNSR.exe"+6E62640</Address>
+              <Offsets>
+                <Offset>1f0</Offset>
+                <Offset>130</Offset>
+                <Offset>2c0</Offset>
+                <Offset>30</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>36</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>4801</ID>
+              <Description>"Y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"BNSR.exe"+6E62640</Address>
+              <Offsets>
+                <Offset>1f0+4</Offset>
+                <Offset>130</Offset>
+                <Offset>2c0</Offset>
+                <Offset>30</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>36</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>4802</ID>
+              <Description>"Z"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"BNSR.exe"+6E62640</Address>
+              <Offsets>
+                <Offset>1f0+8</Offset>
+                <Offset>130</Offset>
+                <Offset>2c0</Offset>
+                <Offset>30</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>36</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4458</ID>
+      <Description>"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x10"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <Color>9D9D00</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
 
-
-
-Toggle Activation
-
-45
-
-0
-
-
-
-
-4800
-"X"
-0
-Float
-"BNSR.exe"+6E62640
-
-1f0
-130
-2c0
-30
-
-
-
-Toggle Activation
-
-36
-
-0
-
-
-
-
-4801
-"Y"
-0
-Float
-"BNSR.exe"+6E62640
-
-1f0+4
-130
-2c0
-30
-
-
-
-Toggle Activation
-
-36
-
-0
-
-
-
-
-4802
-"Z"
-0
-Float
-"BNSR.exe"+6E62640
-
-1f0+8
-130
-2c0
-30
-
-
-
-Toggle Activation
-
-36
-
-0
-
-
-
-
-
-
-
-
-4458
-"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x10"
-
-9D9D00
-Auto Assembler Script
-[ENABLE]
 [[["BNSR.exe"+6E62640]+30]+2C0]+98:
-dd (float)10
-
+  dd (float)10
+ 
+ 
 [DISABLE]
 
 [[["BNSR.exe"+6E62640]+30]+2C0]+98:
-dd (float)1
+  dd (float)1
+
 
 {
 F3 0F10 8B 98000000
@@ -542,59 +556,62 @@ F3 0F59 B1 98000000
 F3 0F10 80 98000000
 30]+2C0]+98
 }
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Deactivate</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>49</Key>
+          </Keys>
+          <ID>1</ID>
+          <DeactivateSound>Deactivate</DeactivateSound>
+        </Hotkey>
+        <Hotkey>
+          <Action>Activate</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>52</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound>Activate</ActivateSound>
+        </Hotkey>
+      </Hotkeys>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4459</ID>
+          <Description>"    ★ Freezer"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>FF8080</Color>
+          <VariableType>Float</VariableType>
+          <Address>"BNSR.exe"+75185F0</Address>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys/>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4462</ID>
+      <Description>"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x5"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <Color>9D9D00</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
 
-
-
-Deactivate
-
-17
-49
-
-1
-Deactivate
-
-
-Activate
-
-17
-52
-
-0
-Activate
-
-
-
-
-4459
-" ★ Freezer"
-0
-FF8080
-Float
-"BNSR.exe"+75185F0
-
-
-Toggle Activation
-
-0
-
-
-
-
-
-
-4462
-"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x5"
-
-9D9D00
-Auto Assembler Script
-[ENABLE]
 [[["BNSR.exe"+6E62640]+30]+2C0]+98:
-dd (float)5
-
+  dd (float)5
+ 
+ 
 [DISABLE]
 
 [[["BNSR.exe"+6E62640]+30]+2C0]+98:
-dd (float)1
+  dd (float)1
+
 
 {
 F3 0F10 8B 98000000
@@ -602,59 +619,62 @@ F3 0F59 B1 98000000
 F3 0F10 80 98000000
 30]+2C0]+98
 }
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Deactivate</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>49</Key>
+          </Keys>
+          <ID>1</ID>
+          <DeactivateSound>Deactivate</DeactivateSound>
+        </Hotkey>
+        <Hotkey>
+          <Action>Activate</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>51</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound>Activate</ActivateSound>
+        </Hotkey>
+      </Hotkeys>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4463</ID>
+          <Description>"    ★ Freezer"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>FF8080</Color>
+          <VariableType>Float</VariableType>
+          <Address>"BNSR.exe"+75185F0</Address>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys/>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4460</ID>
+      <Description>"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x3"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <Color>9D9D00</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
 
-
-
-Deactivate
-
-17
-49
-
-1
-Deactivate
-
-
-Activate
-
-17
-51
-
-0
-Activate
-
-
-
-
-4463
-" ★ Freezer"
-0
-FF8080
-Float
-"BNSR.exe"+75185F0
-
-
-Toggle Activation
-
-0
-
-
-
-
-
-
-4460
-"𝐒𝐩𝐞𝐞𝐝 𝐡𝐚𝐜𝐤 x3"
-
-9D9D00
-Auto Assembler Script
-[ENABLE]
 [[["BNSR.exe"+6E62640]+30]+2C0]+98:
-dd (float)3
-
+  dd (float)3
+ 
+ 
 [DISABLE]
 
 [[["BNSR.exe"+6E62640]+30]+2C0]+98:
-dd (float)1
+  dd (float)1
+
 
 {
 F3 0F10 8B 98000000
@@ -662,69 +682,74 @@ F3 0F59 B1 98000000
 F3 0F10 80 98000000
 30]+2C0]+98
 }
-
-
-
-Deactivate
-
-17
-49
-
-1
-Deactivate
-
-
-Activate
-
-17
-50
-
-0
-Activate
-
-
-
-
-4461
-" ★ Freezer"
-0
-FF8080
-Float
-"BNSR.exe"+75185F0
-
-
-Toggle Activation
-
-0
-
-
-
-
-
-
-
-
-替換了 movups [rdi+000001F0],xmm7
-BNSR.exe+2D3A4EB
-
-00
-00
-45
-8B
-C6
-
-
-0F
-11
-BF
-F0
-01
-00
-00
-
-
-B2
-01
-0F
-11
-B7
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Deactivate</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>49</Key>
+          </Keys>
+          <ID>1</ID>
+          <DeactivateSound>Deactivate</DeactivateSound>
+        </Hotkey>
+        <Hotkey>
+          <Action>Activate</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>50</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound>Activate</ActivateSound>
+        </Hotkey>
+      </Hotkeys>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4461</ID>
+          <Description>"    ★ Freezer"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>FF8080</Color>
+          <VariableType>Float</VariableType>
+          <Address>"BNSR.exe"+75185F0</Address>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys/>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替換了 movups [rdi+000001F0],xmm7</Description>
+      <AddressString>BNSR.exe+2D3A4EB</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>45</Byte>
+        <Byte>8B</Byte>
+        <Byte>C6</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>BF</Byte>
+        <Byte>F0</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>B2</Byte>
+        <Byte>01</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>B7</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
